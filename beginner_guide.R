@@ -85,6 +85,60 @@ max_hp_car
 max_hp_car_base <- mtcars[mtcars$hp == max(mtcars$hp), ]
 max_hp_car_base
 
+# 7. Sorting Cars by Horsepower in Descending Order
+# -----------------------------------------------------
 
+# Sort cars by horsepower in descending order using `arrange`
+sorted_by_hp <- mtcars %>% arrange(desc(hp))
+head(sorted_by_hp)
 
+# Same sorting operation in Base R
+sorted_by_hp_base <- mtcars[order(-mtcars$hp), ]
+head(sorted_by_hp_base)
+
+# 8. Filtering for High Horsepower and Specific Cylinder Count
+# -----------------------------------------------------
+
+# Example: Cars with `hp > 150` and `cyl == 8`
+high_hp_eight_cyl <- mtcars %>% filter(hp > 150, cyl == 8)
+high_hp_eight_cyl
+
+# Same filter in Base R
+high_hp_eight_cyl_base <- mtcars[mtcars$hp > 150 & mtcars$cyl == 8, ]
+high_hp_eight_cyl_base
+
+# 9. Calculating the Average MPG by Cylinder Count
+# -----------------------------------------------------
+
+# Group data by cylinder count (`cyl`) and calculate the average MPG
+avg_mpg_by_cyl <- mtcars %>%
+    group_by(cyl) %>%
+    summarize(avg_mpg = mean(mpg))
+avg_mpg_by_cyl
+
+# 10. Filtering Cars with Above-Average MPG
+# -----------------------------------------------------
+
+# Find cars with MPG above the overall average MPG
+avg_mpg <- mean(mtcars$mpg)
+high_mpg_cars <- mtcars %>% filter(mpg > avg_mpg)
+high_mpg_cars
+
+# Same filter in Base R
+high_mpg_cars_base <- mtcars[mtcars$mpg > avg_mpg, ]
+high_mpg_cars_base
+
+# 11. Adding a New Column for Power-to-Weight Ratio
+# -----------------------------------------------------
+
+# Create a new column `power_to_weight` by dividing `hp` by `wt`
+mtcars <- mtcars %>% mutate(power_to_weight = hp / wt)
+head(mtcars)
+
+# Same calculation in Base R
+mtcars$power_to_weight_base <- mtcars$hp / mtcars$wt
+head(mtcars)
+
+desc_ptw_mtccars<- mtcars %>% arrange(desc(power_to_weight))
+head(desc_ptw_mtccars)
 
