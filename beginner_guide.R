@@ -170,3 +170,26 @@ my_list <- list(
     Vector = c(1, 2, 3)
 )
 print(my_list)
+
+# 13. Creating Functions in R
+# -----------------------------------------------------
+
+# Functions in R are created using the function() keyword
+
+# Example: A function to calculate the square of a number
+square <- function(x) {
+    return(x^2)
+}
+
+# Using the function
+square(4)    # Output will be 16
+
+# Example: A function to add two numbers
+add_numbers <- function(a, b) {
+    result <- a + b
+    return(result)
+}
+
+# Using the function
+add_numbers(10, 15)   # Output will be 25
+
