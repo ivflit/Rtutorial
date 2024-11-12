@@ -61,3 +61,30 @@ head(mtcars_selected)
 # Alternative way to select columns using Base R
 mtcars_selected_base <- mtcars[, c("mpg", "hp", "cyl")]
 head(mtcars_selected_base)
+
+# 5. Filtering Cars with High Horsepower
+# -----------------------------------------------------
+
+# Filter rows where horsepower (`hp`) is greater than 200
+high_hp_cars <- mtcars %>% filter(hp > 200)
+high_hp_cars
+
+# Same filter using Base R
+high_hp_cars_base <- mtcars[mtcars$hp > 200, ]
+high_hp_cars_base
+
+
+# 6. Finding the Car with the Maximum Horsepower
+# -----------------------------------------------------
+
+# Use `filter` and `max` to find the car(s) with the highest horsepower
+max_hp_car <- mtcars %>% filter(hp == max(hp))
+max_hp_car
+
+# Same operation in Base R
+max_hp_car_base <- mtcars[mtcars$hp == max(mtcars$hp), ]
+max_hp_car_base
+
+
+
+
