@@ -142,3 +142,31 @@ head(mtcars)
 desc_ptw_mtccars<- mtcars %>% arrange(desc(power_to_weight))
 head(desc_ptw_mtccars)
 
+# 12. Basic Data Structures in R
+# -----------------------------------------------------
+
+# R has several basic data structures. Here are the most commonly used ones:
+
+# (a) Vector: A sequence of data elements of the same type
+my_vector <- c(1, 2, 3, 4, 5)
+print(my_vector)
+
+# (b) Matrix: A 2D collection of elements of the same type
+my_matrix <- matrix(1:9, nrow = 3, ncol = 3)
+print(my_matrix)
+
+# (c) Data Frame: A table-like structure where columns can have different types
+my_data <- data.frame(
+    Name = c("Alice", "Bob", "Charlie"),
+    Age = c(25, 30, 35),
+    Score = c(90, 85, 88)
+)
+print(my_data)
+
+# (d) List: A flexible data structure that can contain different types of elements
+my_list <- list(
+    Number = 42,
+    Text = "Hello",
+    Vector = c(1, 2, 3)
+)
+print(my_list)
