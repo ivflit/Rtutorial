@@ -193,3 +193,39 @@ add_numbers <- function(a, b) {
 # Using the function
 add_numbers(10, 15)   # Output will be 25
 
+# 5. Basic Plotting in R
+# -----------------------------------------------------
+
+# R provides powerful plotting functions for visualizing data.
+# We'll use the `plot()` function for simple plots.
+
+# Simple Scatter Plot
+plot(mtcars$hp, mtcars$mpg,  # X-axis: hp, Y-axis: mpg
+     main = "Horsepower vs. MPG",
+     xlab = "Horsepower",
+     ylab = "Miles Per Gallon",
+     col = "blue", pch = 19)   # Customize color and point type
+
+# Histogram
+hist(mtcars$mpg,
+     main = "Histogram of Miles Per Gallon",
+     xlab = "Miles Per Gallon",
+     col = "lightblue",
+     border = "black")
+
+# Box Plot
+boxplot(mtcars$mpg ~ mtcars$cyl,
+        main = "MPG by Cylinder Count",
+        xlab = "Number of Cylinders",
+        ylab = "Miles Per Gallon",
+        col = c("lightblue", "lightgreen", "lightpink"))
+
+# Line Plot
+x <- 1:10
+y <- x^2   # y is the square of x
+plot(x, y, type = "o",
+     main = "Line Plot of y = x^2",
+     xlab = "x",
+     ylab = "y")
+
+
