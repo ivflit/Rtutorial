@@ -43,8 +43,8 @@ library(dplyr)
 # Check the structure of `mtcars` and see all available columns
 str(mtcars)
 names(mtcars)
-
-
+dim(mtcars)
+mtcars$mpg
 # 4. Selecting Specific Columns
 # -----------------------------------------------------
 
@@ -148,11 +148,16 @@ head(desc_ptw_mtccars)
 # R has several basic data structures. Here are the most commonly used ones:
 
 # (a) Vector: A sequence of data elements of the same type
+2:10
+seq(from=2, to=10)
+seq(from=5, to=50, by=5)
 my_vector <- c(1, 2, 3, 4, 5)
 print(my_vector)
 
 # (b) Matrix: A 2D collection of elements of the same type
 my_matrix <- matrix(1:9, nrow = 3, ncol = 3)
+print(my_matrix)
+my_matrix <- matrix(1:9, nrow = 3, ncol = 3, byrow=TRUE)
 print(my_matrix)
 
 # (c) Data Frame: A table-like structure where columns can have different types
@@ -171,6 +176,12 @@ my_list <- list(
 )
 print(my_list)
 
+ls()
+test <- 123
+ls()
+rm(test)
+ls()
+typeof(3342L)
 # 13. Creating Functions in R
 # -----------------------------------------------------
 
@@ -228,4 +239,85 @@ plot(x, y, type = "o",
      xlab = "x",
      ylab = "y")
 
+# 14. Reading and Loading Data from a CSV File
+# -----------------------------------------------------
+
+# You can load data from a CSV file using the `read.csv()` function.
+# Ensure the file path is correct. Here's how to read a CSV file:
+
+# Example: Reading a CSV file from your local directory
+my_data_csv <- read.csv("sample_data.csv")
+
+# View the first few rows of the dataset
+head(my_data_csv)
+
+# You can also specify the separator if your file uses something other than commas
+# Example: Reading a CSV with a semicolon delimiter
+my_data_csv_semicolon <- read.csv("sample_data.csv", sep = ";")
+head(my_data_csv_semicolon)
+
+# To ensure the data is read correctly, you can check the structure and summary
+str(my_data_csv)
+summary(my_data_csv)
+
+# Create a sample data frame
+my_data <- data.frame(
+    Name = c("Alice", "Bob", "Charlie", "David", "Eve"),
+    Age = c(25, 30, 35, 40, 22),
+    Score = c(90, 85, 88, 92, 87)
+)
+
+# Write the data frame to a CSV file
+write.csv(my_data, "my_data.csv", row.names = FALSE)
+
+# In this case, "path/to/your/directory" should be the desired location on your system.
+# row.names = FALSE ensures that row numbers are not included in the CSV file.
+
+# You can also handle CSV files with larger datasets by using `fread` from the `data.table` package, 
+# which is faster for large files:
+# install.packages("data.table")
+# library(data.table)
+# my_data_csv_fast <- fread("sample_data.csv")
+# head(my_data_csv_fast)
+
+
+# 15. Connecting to a Database and Loading Data
+# -----------------------------------------------------
+
+# To connect to a database and load data into R, you typically use the `DBI` package,
+# which provides a unified interface for connecting to various databases such as MySQL, SQLite, PostgreSQL, etc.
+
+# Install and load the necessary packages (DBI and RMySQL for MySQL, or RSQLite for SQLite)
+# install.packages("DBI")
+# install.packages("RMySQL")  # For MySQL databases
+# install.packages("RSQLite") # For SQLite databases
+library(DBI)
+
+# Example: Connecting to an SQLite database
+con <- dbConnect(RSQLite::SQLite(), "path/to/your/database.sqlite")
+
+# Example: Connecting to a MySQL database
+# con <- dbConnect(RMySQL::MySQL(), dbname = "your_dbname", host = "your_host", 
+#                  user = "your_user", password = "your_password")
+
+# Once connected, you can query the database and load data into a data frame
+query <- "SELECT * FROM your_table_name"
+my_data_db <- dbGetQuery(con, query)
+
+# View the first few rows of the data
+head(my_data_db)
+
+# Check the structure of the database data
+str(my_data_db)
+
+# After you're done, don't forget to disconnect from the database
+dbDisconnect(con)
+
+# Example for working with a PostgreSQL database (additional installation needed):
+# install.packages("RPostgreSQL")
+# library(RPostgreSQL)
+# con <- dbConnect(RPostgreSQL::PostgreSQL(), dbname = "your_dbname", 
+#                  host = "your_host", user = "your_user", password = "your_password")
+# dbGetQuery(con, "SELECT * FROM your_table_name")
+# dbDisconnect(con)
 
