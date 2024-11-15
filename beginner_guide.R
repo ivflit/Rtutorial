@@ -270,6 +270,14 @@ my_data <- data.frame(
 # Write the data frame to a CSV file
 write.csv(my_data, "my_data.csv", row.names = FALSE)
 
+# Let's say you've filtered data from mtcars and want to save it to a new CSV file
+high_hp_cars <- mtcars[mtcars$hp > 150, ]
+(high_hp_cars)
+high_hp_cars_with_filter <- mtcars %>% filter(hp > 150)
+(high_hp_cars_with_filter)
+# Now write the filtered data to a CSV file
+write.csv(high_hp_cars, "high_hp_cars.csv", row.names = FALSE)
+
 # In this case, "path/to/your/directory" should be the desired location on your system.
 # row.names = FALSE ensures that row numbers are not included in the CSV file.
 
